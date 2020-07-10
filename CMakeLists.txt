@@ -6,6 +6,9 @@ if(WIN32)
 	set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MD")
 	set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /MDd")
 	add_compile_definitions(_CRT_SECURE_NO_WARNINGS /permissive- /Zc:__cplusplus)
+elseif(APPLE)
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -undefined dynamic_lookup")
+	add_compile_options(-fvisibility=hidden $<$<COMPILE_LANGUAGE:CXX>:-fvisibility-inlines-hidden>)
 else()
 	add_compile_options(-fvisibility=hidden $<$<COMPILE_LANGUAGE:CXX>:-fvisibility-inlines-hidden>)
 endif()
@@ -24,6 +27,7 @@ set(LUA_RTMIDI_SRCS
 message(INFO "lua_ver: ${LUA_VERSION} / LUA_INDRI: ${LUA_INCDIR} / LIBFLAG: ${LIBFLAG} / LIBDIR: ${LIBDIR}")
 
 if (LIBDIR)
+
   add_library(lua-rtmidi SHARED ${LUA_RTMIDI_SRCS})
 
   target_compile_definitions(lua-rtmidi PRIVATE LUA_RTMIDI_DLL LUA_RTMIDI_DLL_EXPORTS)
@@ -33,6 +37,7 @@ if (LIBDIR)
   set_target_properties(lua-rtmidi PROPERTIES OUTPUT_NAME "luartmidi")
   set_target_properties(lua-rtmidi PROPERTIES PREFIX "")
   install(TARGETS lua-rtmidi DESTINATION ${LIBDIR})
+  
 else()
   add_library(lua-rtmidi51 SHARED ${LUA_RTMIDI_SRCS})
   target_compile_definitions(lua-rtmidi51 PRIVATE LUA_RTMIDI_DLL LUA_RTMIDI_DLL_EXPORTS)

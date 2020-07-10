@@ -18,6 +18,12 @@ $ cmake --build . --target lua-rtmidi53
 Targets `lua-rtmidi51` and `lua-rtmidi52` are also available, which build the
 bindings for Lua 5.1 and 5.2 instead.
 
+
+# Building - LuaRocks
+## Unix
+> cd /path/to/this/repo
+> sudo luarocks make
+
 # Copyright
 
 **lua-rtmidi** is licensed under the 2-clause BSD License.
