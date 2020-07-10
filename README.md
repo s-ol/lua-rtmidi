@@ -21,8 +21,8 @@ bindings for Lua 5.1 and 5.2 instead.
 
 # Building - LuaRocks
 ## Unix
-> cd /path/to/this/repo
-> sudo luarocks make
+> cd /path/to/this/repo<br/>
+> sudo luarocks make<br/>
 
 # Copyright
 
